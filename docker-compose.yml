@@ -10,9 +10,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: ghcr.io/castetus/traininglog-backend:latest
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
@@ -29,10 +27,7 @@ services:
 
   frontend:
     build:
-      context: ../frontend
-      dockerfile: Dockerfile
-      args:
-        VITE_API_URL: ${VITE_API_URL}
+      image: ghcr.io/castetus/traininglog-frontend:${FRONTEND_VERSION}
     restart: unless-stopped
     ports:
       - "80:80"
