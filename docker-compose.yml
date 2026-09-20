@@ -26,8 +26,7 @@ services:
       - db
 
   frontend:
-    build:
-      image: ghcr.io/castetus/traininglog-frontend:${FRONTEND_VERSION}
+    image: ghcr.io/castetus/traininglog-frontend:${FRONTEND_VERSION}
     restart: unless-stopped
     ports:
       - "80:80"
